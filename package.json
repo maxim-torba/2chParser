@@ -1,0 +1,24 @@
+{
+  "name": "2chParser",
+  "version": "0.0.1",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "build --dir",
+    "dist": "build"
+  },
+  "devDependencies": {
+    "electron": "^1.3.5",
+    "electron-prebuilt": "^1.2.5",
+    "jquery": "^3.0.0",
+    "request": "^2.74.0"
+  },
+  "build": {
+    "appId": "777",
+    "category": "parser",
+    "win": {
+      "iconUrl": "https://2ch.hk/favicon.ico"
+    }
+  },
+  "postinstall": "install-app-deps"
+}
