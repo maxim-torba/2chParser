@@ -9,6 +9,3 @@ $('#btn-get').on('click', function () {
     }
 });
 
-$('#btn-showFiles').on('click', function () {
-    require('child_process').exec('start "" "data"');
-});

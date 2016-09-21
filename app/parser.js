@@ -4,9 +4,17 @@ const fs = require('fs');
 
 const request = require('request');
 
+const electron = require('electron');
+const remote = electron.remote;
+const mainProcess = remote.require('./main');
+
 var withImgs = false;
 var fileCounter = 0;
 var arrOfLinks = [];
+
+var folder = __dirname + "\\data\\";
+
+$('#folderAddress').val(folder);
 
 exports.getFiles = function (address) {
     address = address.replace('.html', '.json');
@@ -36,6 +44,7 @@ exports.getFiles = function (address) {
                     alert('Page not found, error 404');
                 else
                     alert('Can\'t parse this page');
+                return;
             }
             
             $('#btn-get').fadeOut(300, () => {
@@ -49,21 +58,21 @@ function downloadFile(path) {
     var href = 'https://2ch.hk/b/' + path;
     var name = /\d{13,15}/.exec(path);
     var extension = /\.\w{0,10}/.exec(path);
-    
+    var fileAddress = folder + name + extension;
     console.log(href);
     
-    let file = fs.createWriteStream("data/" + name + extension);
-    
+    let file = fs.createWriteStream(fileAddress);
+    console.log(folder + name + extension);
     request(href)
         .on('end', () => {
-            fileCounter++;
-            updateStatus();
-            
-            if (arrOfLinks.length && fileCounter <= arrOfLinks.length)
+            if (arrOfLinks.length && fileCounter < arrOfLinks.length) {
                 downloadFile(arrOfLinks[fileCounter]);
+                fileCounter++;
+                updateStatus();
+            }
             else {
-                arrOfLinks.length = 0;
-                fileCounter = 0;
+                alert('thread was successfully parsed');
+                toBegin();
             }
         })
         .on('error', (err) => {
@@ -81,7 +90,7 @@ function updateStatus() {
     $('#amount').text(fileCounter + ' out of ' + arrOfLinks.length);
 }
 
-$('#btn-break').on('click', function () {
+function toBegin() {
     $('#amount').fadeOut();
     
     $('#btn-break').fadeOut(300, () => {
@@ -89,4 +98,18 @@ $('#btn-break').on('click', function () {
     });
     arrOfLinks.length = 0;
     fileCounter = 0;
+}
+
+$('#btn-break').on('click', toBegin);
+
+$('#btn-showFiles').on('click', function () {
+    require('child_process').exec('start "" ' + '"' + folder + '"');
+});
+
+$('#folderChooser').on('click', _ => {
+    var newFolderAddress = mainProcess.selectDirectory();
+    if (newFolderAddress)
+        folder = newFolderAddress + '\\';
+    
+    $('#folderAddress').val(folder);
 });

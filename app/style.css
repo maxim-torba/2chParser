@@ -28,6 +28,17 @@ body {
     font-size: 3em;
 }
 
+#downloadLocation{
+    position: absolute;
+    bottom: 10%;
+    width: 100%;
+    font-size: 1.2em;
+}
+
+#folderAddress{
+    width: 300px;
+}
+
 #btnsWrapper {
     position: absolute;
     bottom: 20%;

@@ -6,9 +6,13 @@ const {BrowserWindow} = electron;
 
 const fs = require('fs');
 
+const dialog = electron.dialog;
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
+
+// this should be placed at top of main.js to handle setup events quickly
 if (handleSquirrelEvent()) {
     // squirrel event handled and app will exit in 1000ms, so don't do anything else
     return;
@@ -82,10 +86,11 @@ function handleSquirrelEvent() {
     }
 }
 
+
 function createWindow() {
     // Create the browser window.
     win = new BrowserWindow({width: 800, height: 600, icon: __dirname + '/ico.png'});
-    //win.setMenu(null);
+    win.setMenu(null);
     // and load the index.html of the app.
     win.loadURL(`file://${__dirname}/index.html`);
     
@@ -123,5 +128,8 @@ app.on('activate', () => {
     }
 });
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+exports.selectDirectory = function selectDirectory() {
+    return dialog.showOpenDialog(win, {
+        properties: ['openDirectory']
+    });
+};
