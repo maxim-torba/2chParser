@@ -1,4 +1,5 @@
 const https = require('https');
+const url = require('url');
 
 const fs = require('fs');
 
@@ -11,12 +12,14 @@ const mainProcess = remote.require('./main');
 var withImgs = false;
 var fileCounter = 0;
 var arrOfLinks = [];
+var addressLink = '';
 
 var folder = __dirname + "\\data\\";
 
 $('#folderAddress').val(folder);
 
 exports.getFiles = function (address) {
+    addressLink = address;
     address = address.replace('.html', '.json');
     request({uri: address, method: 'GET', encoding: 'utf8'},
         (err, res) => {
@@ -54,8 +57,12 @@ exports.getFiles = function (address) {
 };
 
 function downloadFile(path) {
+    var ulrObj = url.parse(addressLink);
+    var protocol = ulrObj.protocol;
+    var host = ulrObj.host;
+    var board = /\/\w{0,5}\//.exec(ulrObj.pathname);
     
-    var href = 'https://2ch.hk/b/' + path;
+    var href = protocol + "//" + host + board + path;
     var name = /\d{13,15}/.exec(path);
     var extension = /\.\w{0,10}/.exec(path);
     var fileAddress = folder + name + extension;

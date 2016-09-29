@@ -50,6 +50,7 @@ body {
     height: 40px;
     font-size: 1.3em;
     margin: 10px;
+    font-weight: 600;
 }
 
 #btn-showFiles {
