@@ -9,8 +9,15 @@
 <div id="container">
     <input type="text" placeholder="enter address" id="address" autofocus>
     <label id="withImages">download images?<input type="checkbox" checked></label>
-    <p id="amount"></p>
-    <p id="downloadLocation">Download location: <input type="text" id="folderAddress"><button id="folderChooser">Change...</button></p>
+    <div id="progress-wrapper">
+        <p id="amount"></p>
+        <div id="progress-bar-wrapper">
+            <div id="progress-bar"></div>
+        </div>
+    </div>
+    <p id="downloadLocation">Download location: <input type="text" id="folderAddress">
+        <button id="folderChooser">Change...</button>
+    </p>
     <div id="btnsWrapper">
         <button id="btn-get">GET FILES</button>
         <button id="btn-break">BREAK</button>

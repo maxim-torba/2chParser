@@ -1,20 +1,22 @@
 body {
     text-align: center;
     overflow: hidden;
+    margin: 0;
 }
 
 #address {
     width: 80%;
-    margin: 10% 0;
+    margin: 7% 0;
     height: 30px;
     font-size: 1.5em;
     padding: 0 7px;
-    border-color: rgba(0,0,0,0.3);
+    border-color: rgba(0, 0, 0, 0.3);
 }
 
 #withImages {
     display: block;
     font-size: 1.4em;
+    cursor: pointer;
 }
 
 #withImages input {
@@ -28,20 +30,26 @@ body {
     font-size: 3em;
 }
 
-#downloadLocation{
+#downloadLocation {
     position: absolute;
     bottom: 10%;
     width: 100%;
     font-size: 1.2em;
 }
 
-#folderAddress{
+#downloadLocation button {
+    cursor: pointer;
+    border-radius: 7px;
+    outline: 0;
+}
+
+#folderAddress {
     width: 300px;
 }
 
 #btnsWrapper {
     position: absolute;
-    bottom: 20%;
+    bottom: 21%;
     width: 100%;
 }
 
@@ -51,6 +59,9 @@ body {
     font-size: 1.3em;
     margin: 10px;
     font-weight: 600;
+    cursor: pointer;
+    border-radius: 10px;
+    outline: 0;
 }
 
 #btn-showFiles {
@@ -59,4 +70,28 @@ body {
 
 #btn-break {
     display: none;
+}
+
+#progress-wrapper {
+    width: 100%;
+    position: absolute;
+    bottom: 38%;
+    display: none;
+}
+
+#progress-bar-wrapper {
+    width: 80%;
+    height: 20px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.21);
+    border-radius: 5px;
+}
+
+#progress-bar {
+    height: 20px;
+    width: 0;
+    position: relative;
+    background: #005e50;
+    border-radius: 5px;
+    transition: width .1s;
 }
