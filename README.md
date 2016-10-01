@@ -3,9 +3,9 @@ It's a parcer for 2ch.hk
 
 This is desktop application working on JavaScript built on [ElectronJS](http://electron.atom.io/)
 
-<img src='/screenshots/Screenshot_1.png' width='500px'>
-<img src='/screenshots/Screenshot_2.png' width='500px'>
-<img src='/screenshots/Screenshot_3.png' width='500px'>
+<img src='/screenshots/Screenshot_1.png' width='400px'>
+<img src='/screenshots/Screenshot_2.png' width='400px'>
+<img src='/screenshots/Screenshot_3.png' width='400px'>
 
 
 You need to setup the [NodeJS](https://nodejs.org/en/) for the following actions.
